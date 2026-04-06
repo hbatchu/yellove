@@ -3,7 +3,6 @@
 import { useMatches } from "@/hooks/useMatches";
 import { MatchCard } from "@/components/match/MatchCard";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { LoadingGrid } from "@/components/shared/LoadingGrid";
 import { ErrorState } from "@/components/shared/ErrorState";
 import Link from "next/link";
 
@@ -12,14 +11,20 @@ export function HomeMatchesSection() {
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-5 flex items-center justify-between">
         <SectionHeading title="Recent & Upcoming" />
-        <Link href="/matches" className="text-sm font-medium text-[#1A2B5F] dark:text-[#FDB913] hover:underline">
+        <Link href="/matches" className="text-sm font-semibold text-[#FDB913]/70 transition-colors hover:text-[#FDB913]">
           View all →
         </Link>
       </div>
 
-      {isLoading && <LoadingGrid count={6} />}
+      {isLoading && (
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="shimmer h-36 rounded-2xl border border-white/6 bg-white/3" />
+          ))}
+        </div>
+      )}
       {isError && <ErrorState />}
       {matches && (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

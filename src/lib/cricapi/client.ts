@@ -1,30 +1,23 @@
-const BASE_URL = "https://api.cricapi.com/v1";
+const BASE_URL = "https://cricbuzz-cricket.p.rapidapi.com";
 
-export async function cricapiGet<T>(
-  endpoint: string,
-  params: Record<string, string> = {}
-): Promise<T> {
-  const apiKey = process.env.CRICAPI_KEY;
-  if (!apiKey) throw new Error("CRICAPI_KEY environment variable is not set");
+export async function cricbuzzGet<T>(path: string): Promise<T> {
+  const apiKey = process.env.RAPIDAPI_KEY;
+  if (!apiKey) throw new Error("RAPIDAPI_KEY environment variable is not set");
 
-  const url = new URL(`${BASE_URL}/${endpoint}`);
-  url.searchParams.set("apikey", apiKey);
-  for (const [k, v] of Object.entries(params)) {
-    url.searchParams.set(k, v);
-  }
-
-  const res = await fetch(url.toString(), {
-    next: { revalidate: 0 }, // always fresh — we cache manually
+  const res = await fetch(`${BASE_URL}${path}`, {
+    headers: {
+      "X-RapidAPI-Key": apiKey,
+      "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com",
+    },
+    next: { revalidate: 0 }, // manual TTL cache
   });
 
   if (!res.ok) {
-    throw new Error(`CricAPI error: ${res.status} ${res.statusText}`);
+    throw new Error(`Cricbuzz API error: ${res.status} ${res.statusText}`);
   }
 
-  const json = await res.json();
-  if (json.status !== "success") {
-    throw new Error(`CricAPI returned status: ${json.status}`);
-  }
-
-  return json.data as T;
+  return res.json() as Promise<T>;
 }
+
+// Re-export under old name so nothing outside this folder needs to change
+export { cricbuzzGet as cricapiGet };

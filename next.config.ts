@@ -1,18 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "h.cricapi.com",
-      },
-      {
-        protocol: "https",
-        hostname: "**.cricapi.com",
-      },
-    ],
-  },
+  // Team/player images are proxied through /api/img/[imageId]
+  // No external image hostnames needed
+  images: {},
 };
 
 export default nextConfig;

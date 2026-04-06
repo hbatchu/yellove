@@ -6,15 +6,14 @@ interface SectionHeadingProps {
 
 export function SectionHeading({ title, subtitle, accent = false }: SectionHeadingProps) {
   return (
-    <div className="mb-4">
-      <h2
-        className={`font-display text-xl font-bold tracking-tight ${
-          accent ? "text-[#FDB913]" : "text-foreground"
-        }`}
-      >
-        {title}
+    <div>
+      <h2 className="flex items-center gap-3 font-display text-xl font-black tracking-tight text-white sm:text-2xl">
+        {accent && (
+          <span className="h-5 w-1 rounded-full bg-[#FDB913]" />
+        )}
+        <span className={accent ? "text-gradient-yellow" : ""}>{title}</span>
       </h2>
-      {subtitle && <p className="mt-0.5 text-sm text-muted-foreground">{subtitle}</p>}
+      {subtitle && <p className="mt-1 text-sm text-white/40">{subtitle}</p>}
     </div>
   );
 }

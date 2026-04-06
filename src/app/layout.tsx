@@ -40,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable} h-full`}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable} h-full dark`}>
       <body className="flex min-h-full flex-col bg-background antialiased">
         <QueryProvider>
           <Navbar />

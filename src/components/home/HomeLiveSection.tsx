@@ -3,7 +3,6 @@
 import { useLiveScores } from "@/hooks/useLiveScores";
 import { LiveMatchCard } from "@/components/match/LiveMatchCard";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
 
 export function HomeLiveSection() {
@@ -14,13 +13,9 @@ export function HomeLiveSection() {
     return (
       <div>
         <SectionHeading title="Live Now" accent />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="rounded-xl border border-[#253570] bg-[#1A2B5F]/30 p-4">
-              <Skeleton className="mb-3 h-4 w-1/3 bg-[#253570]" />
-              <Skeleton className="mb-2 h-10 w-full bg-[#253570]" />
-              <Skeleton className="h-4 w-2/3 bg-[#253570]" />
-            </div>
+            <div key={i} className="shimmer h-44 rounded-2xl border border-white/6 bg-white/3" />
           ))}
         </div>
       </div>
@@ -31,10 +26,14 @@ export function HomeLiveSection() {
     return (
       <div>
         <SectionHeading title="Live Now" accent />
-        <div className="rounded-xl border border-dashed border-[#253570] bg-[#1A2B5F]/10 py-10 text-center">
-          <p className="font-semibold text-[#1A2B5F] dark:text-white/60">No live matches right now</p>
-          <p className="mt-1 text-sm text-muted-foreground">Check the schedule for upcoming matches</p>
-          <Link href="/matches" className="mt-4 inline-block rounded-lg bg-[#FDB913] px-4 py-2 text-sm font-bold text-[#1A2B5F] hover:bg-[#E5A610]">
+        <div className="mt-5 flex flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-white/2 py-14 text-center">
+          <div className="mb-3 text-3xl">🏏</div>
+          <p className="font-semibold text-white/50">No live matches right now</p>
+          <p className="mt-1 text-sm text-white/25">Check the schedule for upcoming matches</p>
+          <Link
+            href="/matches"
+            className="mt-5 inline-block rounded-full bg-[#FDB913] px-5 py-2 text-sm font-bold text-[#0A0F1E] transition-all hover:bg-[#FFD860]"
+          >
             View Schedule
           </Link>
         </div>
@@ -44,9 +43,9 @@ export function HomeLiveSection() {
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-5 flex items-center justify-between">
         <SectionHeading title="Live Now" accent />
-        <Link href="/live" className="text-sm font-medium text-[#1A2B5F] dark:text-[#FDB913] hover:underline">
+        <Link href="/live" className="text-sm font-semibold text-[#FDB913]/70 transition-colors hover:text-[#FDB913]">
           View all →
         </Link>
       </div>
