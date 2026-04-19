@@ -2,7 +2,7 @@ services:
   - type: web
     name: nutrio-backend
     runtime: node
-    buildCommand: npm install --legacy-peer-deps && npm run build
+    buildCommand: npm install --legacy-peer-deps --include=dev && npm run build
     startCommand: node dist/main.js
     envVars:
       - key: NODE_ENV
