@@ -131,6 +131,28 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                                           fontWeight: FontWeight.w600)),
                             ),
                             const SizedBox(height: 12),
+                            Row(children: [
+                              const Expanded(child: Divider()),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 8),
+                                child: Text('or', style: GoogleFonts.poppins(color: Colors.grey)),
+                              ),
+                              const Expanded(child: Divider()),
+                            ]),
+                            const SizedBox(height: 12),
+                            OutlinedButton.icon(
+                              onPressed: auth.isLoading
+                                  ? null
+                                  : () => ref.read(authProvider.notifier).signInWithGoogle(),
+                              icon: Image.network(
+                                'https://developers.google.com/identity/images/g-logo.png',
+                                height: 18,
+                                errorBuilder: (_, __, ___) => const Icon(Icons.login, size: 18),
+                              ),
+                              label: Text('Continue with Google',
+                                  style: GoogleFonts.poppins(fontWeight: FontWeight.w500)),
+                            ),
+                            const SizedBox(height: 12),
                             TextButton(
                               onPressed: () => Navigator.pop(context),
                               child: Text('Already have an account? Sign In',

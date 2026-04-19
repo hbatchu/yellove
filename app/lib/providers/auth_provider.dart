@@ -65,6 +65,16 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
+  Future<void> signInWithGoogle() async {
+    state = state.copyWith(isLoading: true, clearError: true);
+    try {
+      final r = await _svc.signInWithGoogle();
+      state = AuthState(token: r.token, user: r.user);
+    } catch (e) {
+      state = state.copyWith(isLoading: false, error: _msg(e));
+    }
+  }
+
   Future<void> logout() async {
     await _svc.clearSession();
     state = const AuthState();

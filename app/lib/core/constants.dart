@@ -1,7 +1,9 @@
 class AppConstants {
-  // Android emulator: 10.0.2.2 | Physical device: your machine's local IP
-  static const String baseUrl = 'http://10.35.204.239:3000/api/v1';
+  static const String baseUrl = 'https://nutrio-p58b.onrender.com/api/v1';
 
   static const String appName = 'Nutrio';
   static const String tagline = 'Scan. Know. Choose Better.';
+
+  // From Google Cloud Console → OAuth 2.0 → Web client ID
+  static const String googleWebClientId = '298127569424-p0339rg5tfh79q6012e98p5063oarhip.apps.googleusercontent.com';
 }
